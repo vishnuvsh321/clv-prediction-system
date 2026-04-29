@@ -69,12 +69,34 @@ st.markdown(f"""
   }}
   .stApp {{ background: {BG}; }}
 
-  /* Sidebar */
-  section[data-testid="stSidebar"] {{
-    background: {PANEL} !important;
-    border-right: 1px solid {BORDER};
-  }}
-  section[data-testid="stSidebar"] * {{ color: {TEXT} !important; }}
+  /* 🔥 Modern Sidebar UI */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%) !important;
+    border-right: 1px solid #1e293b;
+    backdrop-filter: blur(12px);
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] * {
+    color: #e2e8f0 !important;
+}
+
+/* Sidebar headings */
+section[data-testid="stSidebar"] h2, 
+section[data-testid="stSidebar"] h3 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* 🔹 Card-style sidebar blocks */
+.sidebar-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    backdrop-filter: blur(6px);
+}
 
   /* Tabs */
   .stTabs [data-baseweb="tab-list"] {{

@@ -1001,7 +1001,7 @@ with t5:
         fg = text_map.get(val, TEXT)
         return f"background-color: {bg}; color: {fg}; font-weight: 600;"
 
-    styled = table.style.applymap(highlight_segment, subset=["Segment"]) \
+    styled = table.style.map(highlight_segment, subset=["Segment"]) \
                         .format({"CLV": "${:,.0f}", "PredictedCLV": "${:,.0f}",
                                  "CLV_Error": "${:,.0f}", "AvgOrderValue": "${:,.0f}",
                                  "PurchaseFreq": "{:.2f}", "AvgOrderValue": "${:,.0f}"})

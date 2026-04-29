@@ -60,159 +60,91 @@ SEG_COLORS = {"High": EMERALD, "Medium": AMBER, "Low": ROSE}
 # ─────────────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap');
 
-  html, body, [class*="css"] {{
+/* Base */
+html, body, [class*="css"] {{
     font-family: 'Sora', sans-serif;
     background: {BG};
     color: {TEXT};
-  }}
-  .stApp {{ background: {BG}; }}
+}}
+.stApp {{ background: {BG}; }}
 
-  /* 🔥 Modern Sidebar UI */
-section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #0f172a 0%, #020617 100%) !important;
-    border-right: 1px solid #1e293b;
+/* 🔥 Modern Sidebar */
+section[data-testid="stSidebar"] {{
+    background: linear-gradient(180deg, {PANEL} 0%, {BG} 100%) !important;
+    border-right: 1px solid {BORDER};
     backdrop-filter: blur(12px);
-}
+    box-shadow: inset -1px 0 0 {BORDER}, 0 0 30px rgba(0,0,0,0.3);
+}}
 
-/* Sidebar text */
-section[data-testid="stSidebar"] * {
-    color: #e2e8f0 !important;
-}
+section[data-testid="stSidebar"] * {{
+    color: {TEXT} !important;
+}}
 
-/* Sidebar headings */
 section[data-testid="stSidebar"] h2, 
-section[data-testid="stSidebar"] h3 {
+section[data-testid="stSidebar"] h3 {{
     font-weight: 700;
     letter-spacing: 0.5px;
-}
+}}
 
-/* 🔹 Card-style sidebar blocks */
-.sidebar-card {
+/* Sidebar Cards */
+.sidebar-card {{
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     padding: 14px;
     margin-bottom: 14px;
     backdrop-filter: blur(6px);
-}
+    transition: all 0.2s ease;
+}}
+.sidebar-card:hover {{
+    border-color: {BLUE};
+    transform: translateY(-2px);
+}}
 
-  /* Tabs */
-  .stTabs [data-baseweb="tab-list"] {{
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {{
     background: {PANEL};
     border-radius: 10px;
     padding: 4px;
     border: 1px solid {BORDER};
     gap: 4px;
-  }}
-  .stTabs [data-baseweb="tab"] {{
-    background: transparent;
+}}
+.stTabs [data-baseweb="tab"] {{
     border-radius: 8px;
     color: {MUTED} !important;
     font-weight: 600;
     font-size: 13px;
-    padding: 8px 16px;
-  }}
-  .stTabs [aria-selected="true"] {{
+}}
+.stTabs [aria-selected="true"] {{
     background: {BLUE} !important;
     color: white !important;
-  }}
+}}
 
-  /* Metric cards */
-  [data-testid="metric-container"] {{
-    background: {PANEL};
-    border: 1px solid {BORDER};
-    border-radius: 12px;
-    padding: 14px 18px !important;
-  }}
-  [data-testid="metric-container"] label {{ color: {MUTED} !important; font-size: 12px !important; }}
-  [data-testid="metric-container"] [data-testid="stMetricValue"] {{ color: {TEXT} !important; font-family: 'Space Mono', monospace !important; }}
-
-  /* Selectbox / slider */
-  .stSelectbox > div > div,
-  .stSlider > div {{ background: transparent !important; }}
-
-  /* Divider */
-  hr {{ border-color: {BORDER} !important; margin: 20px 0; }}
-
-  /* DataFrames */
-  .stDataFrame {{ background: {PANEL}; border-radius: 10px; }}
-
-  /* Buttons */
-  .stButton > button {{
+/* Buttons */
+.stButton > button {{
     background: linear-gradient(135deg, {BLUE}, {VIOLET});
     color: white;
-    border: none;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 14px;
-    padding: 10px 24px;
-    transition: opacity 0.2s;
-  }}
-  .stButton > button:hover {{ opacity: 0.85; }}
+}}
 
-  /* Cards */
-  .card {{
+/* Cards */
+.card {{
     background: {PANEL};
     border: 1px solid {BORDER};
     border-radius: 14px;
-    padding: 20px 24px;
-    margin-bottom: 16px;
-  }}
-  .card-title {{
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: {MUTED};
-    margin-bottom: 12px;
-  }}
+    padding: 20px;
+}}
 
-  /* Segment badges */
-  .seg-high   {{ background: #0f3024; color: {EMERALD}; border: 1px solid {EMERALD}33; }}
-  .seg-medium {{ background: #2e2008; color: {AMBER};   border: 1px solid {AMBER}33; }}
-  .seg-low    {{ background: #2d0e18; color: {ROSE};    border: 1px solid {ROSE}33; }}
-  .badge {{
-    display: inline-block;
-    padding: 3px 12px;
+/* Badge */
+.badge {{
+    padding: 4px 10px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.5px;
-  }}
-
-  /* Model score card */
-  .model-card {{
-    background: {PANEL};
-    border: 1px solid {BORDER};
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    transition: border-color 0.2s;
-  }}
-  .model-card.best {{ border-color: {BLUE}; box-shadow: 0 0 20px {BLUE}22; }}
-  .model-card .model-name {{ font-size: 12px; font-weight: 600; color: {MUTED}; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }}
-  .model-card .r2-score {{ font-size: 28px; font-weight: 700; font-family: 'Space Mono', monospace; color: {TEXT}; }}
-  .model-card .sub {{ font-size: 11px; color: {MUTED}; margin-top: 4px; }}
-
-  /* Insight row */
-  .insight-row {{
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 16px;
-    background: {PANEL};
-    border-left: 3px solid {BLUE};
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 10px;
-    color: {TEXT};
-    font-size: 14px;
-    line-height: 1.5;
-  }}
-  .insight-icon {{ font-size: 18px; flex-shrink: 0; margin-top: 1px; }}
-
-  h1, h2, h3 {{ color: {TEXT} !important; font-family: 'Sora', sans-serif !important; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
